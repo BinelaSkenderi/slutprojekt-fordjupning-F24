@@ -13,3 +13,5 @@ export async function getCityImage(city: string) {
         displayCityImage(cityImage);
     }
 }
+
+

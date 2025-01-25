@@ -7,8 +7,11 @@ import { City } from './types/types';
 // Get references to the dropdown and weather info container
 const cityDropdown = document.getElementById('cities') as HTMLSelectElement;
 const weatherInfo = document.getElementById('weather-info') as HTMLElement;
+const savedCitiesList = document.getElementById('saved-cities') as HTMLElement;
 
-let cities: City[] = []
+let cities: City[] = [];
+let savedCities: City[] = []; // Array to store up to 3 cities
+
 
 
 
@@ -61,6 +64,34 @@ function displayWeather(description: string, temperature: number) {
   `;
 }
 
+
+
+// Spara vald stad
+function saveCity(city: City) {
+    if (!savedCities.find((saved) => saved.name === city.name)) {
+        if (savedCities.length < 3) {
+            savedCities.push(city);
+        } else {
+            savedCities.shift(); // Ta bort den första staden om listan redan innehåller 3 städer
+            savedCities.push(city);
+        }
+        updateSavedCitiesUI();
+    }
+}
+
+
+
+// Uppdatera gränssnittet för sparade städer
+function updateSavedCitiesUI() {
+    savedCitiesList.innerHTML = '<h3>Saved Cities:</h3>';
+    savedCities.forEach(city => {
+        const cityElement = document.createElement('p');
+        cityElement.textContent = city.name;
+        savedCitiesList.appendChild(cityElement);
+    });
+}
+
+
 // Hantera när en stad väljs från dropdown
 cityDropdown.addEventListener('change', (event) => {
 
@@ -73,6 +104,7 @@ cityDropdown.addEventListener('change', (event) => {
         if (city) {
             fetchWeather(city);
             getCityImage(city.name)
+            saveCity(city);
         }
     }
 });
@@ -82,3 +114,8 @@ cityDropdown.addEventListener('change', (event) => {
 // Hämta städer vid sidladdning
 
 fetchCities();
+
+
+
+
+
