@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Weather Forecast</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.scss">
 </head>
 
 <body>
@@ -14,39 +14,38 @@
   </header>
 
   <main class="container">
-    <!-- Left Column: City Dropdown -->
+
+    <!-- Left Column: City Input -->
     <section class="left-column">
-      <label for="cities">Select a city:</label>
-      <select id="cities">
-        <option value="">--Select a city--</option>
+      <div>
+        <label for="city-input">Enter a city:</label>
+        <input type="text" id="city-input" placeholder="Type city name" />
+        <button id="search-button">Search</button>
+      </div>
       </select>
     </section>
 
     <!-- Middle Column: Weather Information -->
     <section class="middle-column">
-      <div id="weather-info">
-        <h2>Weather Information</h2>
-        <p>Details about the selected city's weather will be displayed here.</p>
-      </div>
+      <div id="weather-info"></div>
       <div id="city-image">
-        <img src="" alt="City Image" />
+        <img class='initial-image' src="/src/bilder/Skärmbild 2025-01-28 203234.png" alt="City Image" />
       </div>
     </section>
 
-    <!-- Right Column: Saved Cities -->
+    <!-- Right Column: Future forecast -->
     <aside class="right-column">
-      <div id="saved-cities">
-        <h3>Saved Cities</h3>
-        <ul>
-          <!-- List of saved cities will appear here -->
-        </ul>
+      <h3>5-DAY WEATHER FORECAST</h3>
+      <div id="future-forecast">
       </div>
     </aside>
   </main>
 
+
   <footer class="footer">
     &copy; <span id="current-year"></span> Slutprojekt-Fördjupning-F24
   </footer>
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 

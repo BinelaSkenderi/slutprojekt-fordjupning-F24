@@ -1,11 +1,13 @@
 // Interface for City and Weather
-export interface City {
-    name: string;
-    lat: string;
-    lng: string;
-}
-
 export interface Weather {
-    description: string;
-    temperature: number;
+    name: string;
+    weather: {
+        description: string;
+    }[];
+    main: {
+        temp: number;
+    }
+    wind: {
+        speed: number;
+    }
 }
